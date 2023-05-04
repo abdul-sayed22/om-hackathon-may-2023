@@ -78,7 +78,6 @@ fun HustleCard(id: Int, name: String, owner: String, @DrawableRes imageId: Int, 
             modifier = Modifier
                 .clickable{
                     activity.startActivity(Intent(activity, HustleActivity::class.java).putExtra("HUSTLE_ID", id))
-                    activity.finish()
                 },
             elevation = CardDefaults.cardElevation(4.dp)
         ) {
