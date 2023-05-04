@@ -49,19 +49,19 @@ class HustleActivity: ComponentActivity() {
                             color = Primary,
                             style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.Bold)
                         )
-                        Spacer(modifier = Modifier.height(16.dp))
+                        Spacer(modifier = Modifier.height(48.dp))
                         Text(
                             text = hustle.description,
                             style = MaterialTheme.typography.bodyLarge
                         )
-                        Spacer(modifier = Modifier.height(16.dp))
+                        Spacer(modifier = Modifier.height(48.dp))
                         Graph(
                             fundingRequirement = hustle.fundingRequirement,
                             fundingInPocket = hustle.fundingInPocket,
                             isOwner = isOwner,
                             owner = owner.name
                         )
-                        Spacer(modifier = Modifier.height(16.dp))
+                        Spacer(modifier = Modifier.height(72.dp))
                         RequirementsList(requirements = hustle.requirements)
                     }
                 }
