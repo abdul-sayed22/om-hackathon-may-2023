@@ -11,5 +11,5 @@ data class Hustle(
     val fundingRequirement: BigDecimal,
     val fundingInPocket: BigDecimal,
     val requirements: List<Requirement>,
-    @DrawableRes val imageID: Int
+    @DrawableRes val imageId: Int
 )

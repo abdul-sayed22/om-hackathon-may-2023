@@ -1,5 +1,6 @@
 package com.om.hackathon.collaborate.hustle
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -26,7 +27,9 @@ class HustleActivity: ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val hustleId = intent.getIntExtra("HUSTLE_ID", 1)
+        val hustleId = this.intent.getIntExtra("HUSTLE_ID", 1)
+
+        println(hustleId)
         val hustle = HustleDatabase.hustles.first { it.id == hustleId }
         val owner = HustleDatabase.users.first { it.id == hustle.ownerId }
         val isOwner = HustleDatabase.currentLoggedInUserId == hustle.ownerId

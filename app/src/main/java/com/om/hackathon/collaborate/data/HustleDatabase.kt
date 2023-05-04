@@ -33,7 +33,7 @@ object HustleDatabase {
             R.drawable.triangle
         ),
         Hustle(
-            id = 1,
+            id = 2,
             ownerId = 2,
             name = "CaddyCash",
             description = "Mobile app payment platform to pay caddies",
@@ -46,7 +46,7 @@ object HustleDatabase {
             R.drawable.caddy
         ),
         Hustle(
-            id = 1,
+            id = 3,
             ownerId = 3,
             name = "GOAT Seller",
             description = "Sells merchandise for Lewis Hamilton a.k.a THE GOAT",

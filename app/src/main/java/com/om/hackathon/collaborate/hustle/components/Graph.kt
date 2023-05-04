@@ -26,10 +26,11 @@ import com.om.hackathon.collaborate.ui.theme.CollaborateTheme
 import com.om.hackathon.collaborate.ui.theme.Primary
 import com.om.hackathon.collaborate.ui.theme.SkyBlue
 import java.math.BigDecimal
+import java.math.RoundingMode
 
 @Composable
 fun Graph(fundingRequirement: BigDecimal, fundingInPocket: BigDecimal, isOwner: Boolean, owner: String, modifier: Modifier = Modifier) {
-    val progress = fundingInPocket.divide(fundingRequirement).toFloat()
+    val progress = fundingInPocket.divide(fundingRequirement, 2, RoundingMode.HALF_UP).toFloat()
     Column(
         Modifier
             .fillMaxWidth()) {
