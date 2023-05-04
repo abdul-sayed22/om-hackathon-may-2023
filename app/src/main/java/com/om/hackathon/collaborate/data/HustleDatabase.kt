@@ -57,4 +57,7 @@ object HustleDatabase {
             R.drawable.mrhamilton
         )
     )
+
+    fun lookupOwner(id: Int): User = users.find { it.id == id }!!
+
 }
