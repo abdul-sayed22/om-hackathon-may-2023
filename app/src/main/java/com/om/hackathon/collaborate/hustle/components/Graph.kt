@@ -23,6 +23,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.om.hackathon.collaborate.Greeting
 import com.om.hackathon.collaborate.ui.theme.CollaborateTheme
+import com.om.hackathon.collaborate.ui.theme.Primary
+import com.om.hackathon.collaborate.ui.theme.SkyBlue
 import java.math.BigDecimal
 
 @Composable
@@ -39,7 +41,7 @@ fun Graph(fundingRequirement: BigDecimal, fundingInPocket: BigDecimal, modifier:
             Text(text = "R$fundingRequirement", style = MaterialTheme.typography.headlineSmall.copy(fontWeight = FontWeight.Bold))
         }
         Spacer(modifier = Modifier.size(15.dp))
-        GradientProgressBar(startColor = MaterialTheme.colorScheme.primary, endColor = MaterialTheme.colorScheme.secondary, progress = progress, modifier = Modifier.clip(shape = RoundedCornerShape(15.dp)).height(30.dp))
+        GradientProgressBar(startColor = SkyBlue, endColor = Primary, progress = progress, modifier = Modifier.clip(shape = RoundedCornerShape(15.dp)).height(30.dp))
     }
 }
 
