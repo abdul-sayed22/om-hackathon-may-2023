@@ -23,7 +23,7 @@ class DashboardActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    HustlesScreen(hustleDB)
+                    HustlesScreen(hustleDB, this)
                 }
             }
         }
