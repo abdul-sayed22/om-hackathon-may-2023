@@ -31,7 +31,7 @@ import com.om.hackathon.collaborate.ui.theme.SkyBlue
 @Composable
 fun RequirementsList(requirements: List<Requirement>, modifier: Modifier = Modifier) {
     Column {
-        Text(text = "Requirements for the hustle", style = MaterialTheme.typography.headlineSmall)
+        Text(text = "Requirements for the hustle", style = MaterialTheme.typography.titleLarge)
         Spacer(modifier = Modifier.height(15.dp))
 
         for (requirement in requirements) {

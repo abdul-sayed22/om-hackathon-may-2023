@@ -30,6 +30,12 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".hustle.HustleActivity"
+            android:exported="true"
+            android:label="Hustle"
+            android:theme="@style/Theme.Collaborate">
+        </activity>
     </application>
 
 </manifest>
