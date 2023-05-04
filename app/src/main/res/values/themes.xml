@@ -5,8 +5,7 @@
 
     <style name="SplashTheme" parent="android:Theme.Material.Light.NoActionBar">
         <item name="android:windowSplashScreenBackground" tools:targetApi="s">@color/white</item>
-        <item name="android:windowSplashScreenAnimatedIcon" tools:targetApi="s">@drawable/logo
-        </item>
+
         <item name="android:windowSplashScreenAnimationDuration" tools:targetApi="s">1000</item>
         <item name="android:windowSplashScreenBehavior" tools:targetApi="s">icon_preferred</item>
     </style>
