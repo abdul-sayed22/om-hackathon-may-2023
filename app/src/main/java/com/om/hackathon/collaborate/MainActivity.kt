@@ -24,7 +24,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Graph(BigDecimal(50000), BigDecimal(43523))
+                    Graph(BigDecimal(50000), BigDecimal(43523), false, "Allan")
                 }
             }
         }
