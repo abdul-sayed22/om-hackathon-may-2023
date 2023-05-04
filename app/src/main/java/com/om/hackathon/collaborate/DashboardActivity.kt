@@ -98,8 +98,6 @@ class DashboardActivity : ComponentActivity() {
             Card(
                 modifier = Modifier
                     .clickable{
-                        ContextCompat.startActivity(Intent(this@SplashActivity, MainActivity::class.java))
-                        finish()
                     },
                 elevation = CardDefaults.cardElevation(4.dp)
             ) {
