@@ -1,5 +1,7 @@
 package com.om.hackathon.collaborate.data
 
+import androidx.annotation.DrawableRes
+import com.om.hackathon.collaborate.R
 import com.om.hackathon.collaborate.models.Hustle
 import com.om.hackathon.collaborate.models.Requirement
 import com.om.hackathon.collaborate.models.User
@@ -25,7 +27,8 @@ object HustleDatabase {
                 Requirement(name = "Accountant", skills = "Must be able to count", assignedToId = null),
                 Requirement(name = "Marketer", skills = "POWERPOINT!", assignedToId = 2),
                 Requirement(name = "Blacksmith", skills = "Must know basic geometry", assignedToId = 3)
-            )
+            ),
+            R.drawable.triangle
         ),
         Hustle(
             id = 1,
@@ -37,7 +40,8 @@ object HustleDatabase {
             requirements = listOf(
                 Requirement(name = "Software Developer", skills = "Can make an app"),
                 Requirement(name = "Marketer", skills = "POWERPOINT!")
-            )
+            ),
+            R.drawable.caddy
         ),
         Hustle(
             id = 1,
@@ -49,7 +53,8 @@ object HustleDatabase {
             requirements = listOf(
                 Requirement(name = "Logistics Manager", skills = "Must be able to move merch from one country to another - cheaply", assignedToId = 1),
                 Requirement(name = "Marketer", skills = "POWERPOINT!", assignedToId = 2)
-            )
+            ),
+            R.drawable.mrhamilton
         )
     )
 }
