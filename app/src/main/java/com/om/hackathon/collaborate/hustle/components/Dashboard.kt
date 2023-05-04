@@ -1,5 +1,7 @@
 package com.om.hackathon.collaborate.hustle.components
 
+import android.content.Intent
+import androidx.activity.ComponentActivity
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -26,10 +28,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.content.ContextCompat.startActivity
+import com.om.hackathon.collaborate.MainActivity
 import com.om.hackathon.collaborate.data.HustleDatabase
+import com.om.hackathon.collaborate.hustle.HustleActivity
 
 @Composable
-fun HustlesScreen(hustleDB: HustleDatabase) {
+fun HustlesScreen(hustleDB: HustleDatabase, activity: ComponentActivity) {
     Column(
         modifier = Modifier
             .padding(all = 4.dp), // inside padding
@@ -52,7 +57,8 @@ fun HustlesScreen(hustleDB: HustleDatabase) {
                     id = it.id,
                     name = it.name,
                     owner = hustleDB.lookupOwner(it.ownerId).username,
-                    imageId = it.imageID
+                    imageId = it.imageID,
+                    activity
                 )
             }
         }
@@ -60,7 +66,7 @@ fun HustlesScreen(hustleDB: HustleDatabase) {
 }
 
 @Composable
-fun HustleCard(id: Int, name: String, owner: String, @DrawableRes imageId: Int) {
+fun HustleCard(id: Int, name: String, owner: String, @DrawableRes imageId: Int, activity: ComponentActivity) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
@@ -71,6 +77,8 @@ fun HustleCard(id: Int, name: String, owner: String, @DrawableRes imageId: Int) 
         Card(
             modifier = Modifier
                 .clickable{
+                    activity.startActivity(Intent(activity, HustleActivity::class.java).putExtra("HUSTLE_ID", id))
+                    activity.finish()
                 },
             elevation = CardDefaults.cardElevation(4.dp)
         ) {

@@ -17,7 +17,7 @@ import com.om.hackathon.collaborate.ui.theme.CollaborateTheme
 class SplashActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+        startActivity(Intent(this@SplashActivity, DashboardActivity::class.java))
         finish()
     }
 }
