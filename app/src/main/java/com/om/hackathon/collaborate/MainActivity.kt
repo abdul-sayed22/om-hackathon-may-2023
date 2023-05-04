@@ -12,6 +12,8 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Call
 import androidx.compose.material.icons.filled.Favorite
@@ -29,6 +31,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.om.hackathon.collaborate.data.HustleDatabase
 import com.om.hackathon.collaborate.ui.theme.CollaborateTheme
 
 class MainActivity : ComponentActivity() {
@@ -65,25 +69,60 @@ fun GreetingPreview() {
 }
 
 @Composable
+fun HustlesScreen(hustleDB: HustleDatabase) {
+    Column(
+        modifier = Modifier
+            .padding(all = 4.dp), // inside padding
+        verticalArrangement = Arrangement.spacedBy(
+            space = 4.dp,
+            alignment = Alignment.CenterVertically
+        )
+    ) {
+        Text(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 10.dp),
+            text = "Hustles",
+            fontSize = 30.sp,
+            color = Color.White
+        )
+        LazyColumn {
+            itemsIndexed(hustleDB.hustles) { _, it ->
+                HustleCard(
+                    name = it.name,
+                    owner = hustleDB.lookupOwner(it.ownerId).username,
+                    imageId = it.imageID
+                )
+            }
+        }
+    }
+}
+
+@Composable
 fun HustleCard(name: String, owner: String, @DrawableRes imageId: Int) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .fillMaxWidth()
             .fillMaxHeight()
-            .padding(20.dp)) {
+            .padding(20.dp)
+    ) {
         Card(
-            elevation = CardDefaults.cardElevation( 4.dp)
+            elevation = CardDefaults.cardElevation(4.dp)
         ) {
             Image(painter = painterResource(id = imageId), contentDescription = null)
-            Column(modifier = Modifier
-                .padding(10.dp)
-                .fillMaxWidth()) {
-                Text(name, fontWeight = FontWeight.W700, color = Color.Black)
-                Text(owner, color = Color.Black)
-                Row(modifier = Modifier
-                    .fillMaxWidth(),
-                    horizontalArrangement = Arrangement.End) {
+            Column(
+                modifier = Modifier
+                    .padding(10.dp)
+                    .fillMaxWidth()
+            ) {
+                Text(name, fontWeight = FontWeight.W700, color = Color.White)
+                Text(owner, color = Color.White)
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.End
+                ) {
                     Icon(
                         Icons.Filled.Favorite,
                         contentDescription = "Favorite",
