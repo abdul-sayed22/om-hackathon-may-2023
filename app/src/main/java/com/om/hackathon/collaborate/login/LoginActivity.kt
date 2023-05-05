@@ -1,6 +1,7 @@
 package com.om.hackathon.collaborate.login
 
 import android.content.Intent
+import android.hardware.lights.LightState
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -48,6 +49,8 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.om.hackathon.collaborate.MainActivity
 import com.om.hackathon.collaborate.R
+import com.om.hackathon.collaborate.dashboard.DashboardActivity
+import kotlinx.coroutines.flow.collectLatest
 
 
 class LoginActivity : ComponentActivity() {
@@ -72,7 +75,6 @@ class LoginActivity : ComponentActivity() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun loginForm(viewModel: LoginViewModel = viewModel()) {
-    val loginState by viewModel.loginState.collectAsState()
     var username by rememberSaveable { mutableStateOf("") }
     var inputError by rememberSaveable { mutableStateOf(false) }
     var password by rememberSaveable { mutableStateOf("") }
@@ -185,8 +187,8 @@ fun loginForm(viewModel: LoginViewModel = viewModel()) {
                 Spacer(modifier = Modifier.size(60.dp))
                 FilledIconButton(onClick = {
                     viewModel.attemptLogin(username = username, password = password)
-                    if (loginState.isLoggedIn) {
-                        context.startActivity(Intent(context, MainActivity::class.java))
+                    if (viewModel.loginState.isLoggedIn) {
+                        context.startActivity(Intent(context, DashboardActivity::class.java))
                     } else {
                         inputError = true
                     }
@@ -198,7 +200,6 @@ fun loginForm(viewModel: LoginViewModel = viewModel()) {
                     Text("Sign up")
                 }
             }
-
         }
     }
 
