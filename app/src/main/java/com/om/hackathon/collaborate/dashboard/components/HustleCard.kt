@@ -1,5 +1,6 @@
 package com.om.hackathon.collaborate.dashboard.components
 
+import android.content.Intent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -25,64 +26,69 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat.startActivity
 import com.om.hackathon.collaborate.data.HustleDatabase
+import com.om.hackathon.collaborate.hustle.HustleActivity
 import com.om.hackathon.collaborate.models.Hustle
 import com.om.hackathon.collaborate.ui.theme.Primary
 import com.om.hackathon.collaborate.ui.theme.SkyBlue
 
 typealias OnCardClicked = (Hustle) -> Unit
 
+@Preview
 @Composable
-fun HustleCard(hustle: Hustle, onCardClicked: OnCardClicked) {
+fun HustleCard(hustle: Hustle) {
     val owner = HustleDatabase.lookupOwner(hustle.ownerId)
+    val context = LocalContext.current
 
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
+    Card(
         modifier = Modifier
-            .fillMaxWidth()
-            .fillMaxHeight()
-            .padding(20.dp)
+            .width(280.dp)
+            .clickable {
+                context.startActivity(
+                    Intent(context, HustleActivity::class.java)
+                        .apply { putExtra("HUSTLE_ID", hustle.id) }
+                )
+            },
+        elevation = CardDefaults.cardElevation(4.dp)
     ) {
-        Card(
+        Image(
+            painter = painterResource(id = hustle.imageId),
+            contentDescription = null,
+            contentScale = ContentScale.FillBounds,
+            modifier = Modifier.height(200.dp)
+        )
+        Column(
             modifier = Modifier
-                .clickable {
-                    onCardClicked(hustle)
-                },
-            elevation = CardDefaults.cardElevation(4.dp)
+                .background(Brush.horizontalGradient(listOf(SkyBlue, Primary)))
+                .padding(10.dp)
+                .fillMaxWidth()
         ) {
-            Image(
-                painter = painterResource(id = hustle.imageId),
-                contentDescription = null,
-                contentScale = ContentScale.FillBounds,
-                modifier = Modifier.height(200.dp)
+            Text(
+                hustle.name,
+                style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold)
             )
-            Column(
-                modifier = Modifier
-                    .background(Brush.horizontalGradient(listOf(SkyBlue, Primary)))
-                    .padding(10.dp)
-                    .fillMaxWidth()
+            Text("${owner.name} ${owner.surname}", style = MaterialTheme.typography.bodyMedium)
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.End
             ) {
-                Text(hustle.name, style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold))
-                Text("${owner.name} ${owner.surname}", style = MaterialTheme.typography.bodyMedium)
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.End
-                ) {
-                    Icon(
-                        Icons.Filled.Favorite,
-                        contentDescription = "Favorite",
-                        tint = SkyBlue
-                    )
-                    Spacer(modifier = Modifier.width(4.dp))
-                    Icon(
-                        Icons.Filled.Email,
-                        contentDescription = "Contact",
-                        tint = SkyBlue
-                    )
-                }
+                Icon(
+                    Icons.Filled.Favorite,
+                    contentDescription = "Favorite",
+                    tint = SkyBlue
+                )
+                Spacer(modifier = Modifier.width(4.dp))
+                Icon(
+                    Icons.Filled.Email,
+                    contentDescription = "Contact",
+                    tint = SkyBlue
+                )
             }
         }
     }
