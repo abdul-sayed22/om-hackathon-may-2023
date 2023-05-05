@@ -32,6 +32,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconButtonColors
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -50,6 +51,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.om.hackathon.collaborate.MainActivity
 import com.om.hackathon.collaborate.R
 import com.om.hackathon.collaborate.dashboard.DashboardActivity
+import com.om.hackathon.collaborate.data.HustleDatabase
 import kotlinx.coroutines.flow.collectLatest
 
 
@@ -185,14 +187,18 @@ fun loginForm(viewModel: LoginViewModel = viewModel()) {
                         }
                     })
                 Spacer(modifier = Modifier.size(60.dp))
-                FilledIconButton(onClick = {
-                    viewModel.attemptLogin(username = username, password = password)
-                    if (viewModel.loginState.isLoggedIn) {
-                        context.startActivity(Intent(context, DashboardActivity::class.java))
-                    } else {
-                        inputError = true
-                    }
-                }, modifier = Modifier.fillMaxWidth(0.8f)) {
+                FilledIconButton(
+                    onClick = {
+                        viewModel.attemptLogin(username = username, password = password)
+                        if (viewModel.loginState.isLoggedIn) {
+                            HustleDatabase.currentLoggedInUserId = viewModel.loginState.userId!!
+                            context.startActivity(Intent(context, DashboardActivity::class.java))
+                        } else {
+                            inputError = true
+                        }
+                    },
+                    modifier = Modifier.fillMaxWidth(0.8f)
+                ) {
                     Text("Login")
                 }
                 Spacer(modifier = Modifier.size(10.dp))
