@@ -23,23 +23,25 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.om.hackathon.collaborate.Greeting
 import com.om.hackathon.collaborate.ui.theme.CollaborateTheme
+import com.om.hackathon.collaborate.ui.theme.Primary
+import com.om.hackathon.collaborate.ui.theme.SkyBlue
 import java.math.BigDecimal
+import java.math.RoundingMode
 
 @Composable
-fun Graph(fundingRequirement: BigDecimal, fundingInPocket: BigDecimal, modifier: Modifier = Modifier) {
-    val progress = fundingInPocket.divide(fundingRequirement).toFloat()
+fun Graph(fundingRequirement: BigDecimal, fundingInPocket: BigDecimal, isOwner: Boolean, owner: String, modifier: Modifier = Modifier) {
+    val progress = fundingInPocket.divide(fundingRequirement, 2, RoundingMode.HALF_UP).toFloat()
     Column(
         Modifier
-            .padding(horizontal = 15.dp)
-            .width(IntrinsicSize.Max)) {
+            .fillMaxWidth()) {
         Row {
-            Text(text = "You have ", style = MaterialTheme.typography.headlineSmall)
-            Text(text = "R$fundingInPocket", style = MaterialTheme.typography.headlineSmall.copy(fontWeight = FontWeight.Bold))
-            Text(text = " out of ", style = MaterialTheme.typography.headlineSmall)
-            Text(text = "R$fundingRequirement", style = MaterialTheme.typography.headlineSmall.copy(fontWeight = FontWeight.Bold))
+            Text(text = if (isOwner) "You have " else "$owner has ", style = MaterialTheme.typography.titleLarge)
+            Text(text = "R$fundingInPocket", style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold))
+            Text(text = " out of ", style = MaterialTheme.typography.titleLarge)
+            Text(text = "R$fundingRequirement", style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold))
         }
         Spacer(modifier = Modifier.size(15.dp))
-        GradientProgressBar(startColor = MaterialTheme.colorScheme.primary, endColor = MaterialTheme.colorScheme.secondary, progress = progress, modifier = Modifier.clip(shape = RoundedCornerShape(15.dp)).height(30.dp))
+        GradientProgressBar(startColor = SkyBlue, endColor = Primary, progress = progress, modifier = Modifier.clip(shape = RoundedCornerShape(15.dp)).height(30.dp))
     }
 }
 
@@ -47,6 +49,6 @@ fun Graph(fundingRequirement: BigDecimal, fundingInPocket: BigDecimal, modifier:
 @Composable
 fun GraphPreview() {
     CollaborateTheme {
-        Graph(BigDecimal(50000), BigDecimal(25000))
+        Graph(BigDecimal(50000), BigDecimal(25000), false, "Bob")
     }
 }

@@ -1,5 +1,6 @@
 package com.om.hackathon.collaborate.models
 
+import androidx.annotation.DrawableRes
 import java.math.BigDecimal
 
 data class Hustle(
@@ -9,5 +10,6 @@ data class Hustle(
     val description: String,
     val fundingRequirement: BigDecimal,
     val fundingInPocket: BigDecimal,
-    val requirements: List<Requirement>
+    val requirements: List<Requirement>,
+    @DrawableRes val imageId: Int
 )

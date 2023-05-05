@@ -1,20 +1,19 @@
-package com.om.hackathon.collaborate
+package com.om.hackathon.collaborate.dashboard
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.om.hackathon.collaborate.hustle.components.Graph
+import com.om.hackathon.collaborate.dashboard.components.HustlesList
+import com.om.hackathon.collaborate.hustle.HustleActivity
 import com.om.hackathon.collaborate.ui.theme.CollaborateTheme
-import java.math.BigDecimal
 
-class MainActivity : ComponentActivity() {
+class DashboardActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -24,24 +23,15 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Graph(BigDecimal(50000), BigDecimal(43523), false, "Allan")
+                    HustlesList { hustle ->
+                        startActivity(
+                            Intent(this, HustleActivity::class.java)
+                                .apply { putExtra("HUSTLE_ID", hustle.id) }
+                        )
+                    }
                 }
             }
         }
     }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!", modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    CollaborateTheme {
-        Greeting("Android")
-    }
 }
