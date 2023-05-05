@@ -67,6 +67,7 @@ class HustleActivity : ComponentActivity() {
                         .padding(15.dp)) {
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             Text(
+                                modifier = Modifier.fillMaxWidth(0.9f),
                                 text = hustle.name,
                                 color = SkyBlue,
                                 style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold)
