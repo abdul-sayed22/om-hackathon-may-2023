@@ -1,6 +1,5 @@
-package com.om.hackathon.collaborate.edit
+package com.om.hackathon.collaborate.hustle
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -29,7 +28,7 @@ import com.om.hackathon.collaborate.hustle.components.GradientButton
 import com.om.hackathon.collaborate.ui.theme.CollaborateTheme
 import com.om.hackathon.collaborate.ui.theme.SkyBlue
 
-class EditHustle : ComponentActivity() {
+class EditActivity : ComponentActivity() {
 
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
