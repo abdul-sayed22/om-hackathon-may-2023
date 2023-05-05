@@ -14,7 +14,8 @@ object HustleDatabase {
     val users: List<User> = listOf(
         User(id = 1, username = "allan", password = "achang", name = "Allan", surname = "Chang", skills = listOf("Logistics Manager")),
         User(id = 2, username = "kyle", password = "kwood", name = "Kyle", surname = "Wood", skills = listOf("Marketer")),
-        User(id = 3, username = "abdul", password = "asayed", name = "Abdul", surname = "Sayed", skills = listOf("Blacksmith"))
+        User(id = 3, username = "abdul", password = "asayed", name = "Abdul", surname = "Sayed", skills = listOf("Blacksmith")),
+        User(id = 4, username = "may", password = "govender", name = "May", surname = "Govender", skills = listOf("CIO"))
     )
 
     val hustles: List<Hustle> = listOf(
@@ -57,6 +58,20 @@ object HustleDatabase {
                 Requirement(name = "Marketer", skills = "POWERPOINT!", assignedToId = 2)
             ),
             R.drawable.mrhamilton
+        ),
+        Hustle(
+            id = 4,
+            ownerId = 4,
+            name = "GreenThumb Gardening",
+            description = "Transforming your yard into a beautiful oasis!",
+            fundingRequirement = BigDecimal(25000),
+            fundingInPocket = BigDecimal(25000),
+            requirements = listOf(
+                Requirement(name = "Labourer", skills = "Must be able to mow straight", assignedToId = 3),
+                Requirement(name = "Marketer", skills = "Facebook ads", assignedToId = 2),
+                Requirement(name = "Edger", skills = "Able to handle touch machines", assignedToId = null)
+            ),
+            R.drawable.geenthumb
         )
     )
 
