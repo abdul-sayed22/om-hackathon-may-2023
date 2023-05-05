@@ -188,8 +188,6 @@ fun loginForm(viewModel: LoginViewModel = viewModel()) {
                 Spacer(modifier = Modifier.size(60.dp))
                 GradientButton(
                     text = "Login",
-                    textColor = Color.White,
-                    gradient = Brush.horizontalGradient(listOf(SkyBlue, Primary)),
                     onClick = {
                         viewModel.attemptLogin(username = username, password = password)
                         if (viewModel.loginState.isLoggedIn) {
