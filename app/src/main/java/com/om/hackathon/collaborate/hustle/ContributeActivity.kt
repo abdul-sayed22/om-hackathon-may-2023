@@ -5,7 +5,9 @@ import android.os.PersistableBundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -27,8 +29,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.om.hackathon.collaborate.R
 import com.om.hackathon.collaborate.data.HustleDatabase
 import com.om.hackathon.collaborate.hustle.components.GradientButton
 import com.om.hackathon.collaborate.ui.theme.CollaborateTheme
@@ -70,7 +76,7 @@ class ContributeActivity : ComponentActivity() {
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = Arrangement.Center
                         ) {
-                            for(preset in contributionPresets) {
+                            for (preset in contributionPresets) {
                                 InputChip(
                                     label = { Text("R$preset") },
                                     selected = selectedOption == preset,
@@ -82,7 +88,7 @@ class ContributeActivity : ComponentActivity() {
                                 Spacer(modifier = Modifier.width(5.dp))
                             }
                         }
-                        
+
                         Spacer(modifier = Modifier.height(72.dp))
 
                         Row(
@@ -92,12 +98,25 @@ class ContributeActivity : ComponentActivity() {
                             GradientButton(
                                 text = "Make Contribution",
                                 onClick = {
-                                    Toast.makeText(this@ContributeActivity, "Thank you for your contribution!", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(
+                                        this@ContributeActivity,
+                                        "Thank you for your contribution!",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
                                     finish()
                                 },
                                 modifier = Modifier.fillMaxWidth(0.8f)
                             )
                         }
+
+
+                    }
+                    Box(contentAlignment = Alignment.BottomCenter) {
+                        Image(
+                            painter = painterResource(id = R.drawable.ad1),
+                            contentDescription = "",
+                            contentScale = ContentScale.FillWidth
+                        )
                     }
                 }
             }
