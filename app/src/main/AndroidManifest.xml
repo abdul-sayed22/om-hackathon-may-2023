@@ -48,6 +48,12 @@
             android:label="Hustle"
             android:theme="@style/Theme.Collaborate">
         </activity>
+        <activity
+            android:name=".hustle.ContributeActivity"
+            android:exported="true"
+            android:label="Contribute"
+            android:theme="@style/Theme.Collaborate">
+        </activity>
     </application>
 
 </manifest>
