@@ -87,7 +87,8 @@ class HustleActivity: ComponentActivity() {
                                 GradientButton(
                                     text = "Contribute",
                                     onClick = {
-
+                                        val intent = Intent(this@HustleActivity, ContributeActivity::class.java)
+                                        startActivity(intent)
                                     },
                                     modifier = Modifier.fillMaxWidth(0.8f)
                                 )
