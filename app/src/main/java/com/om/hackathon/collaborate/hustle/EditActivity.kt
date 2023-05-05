@@ -27,6 +27,8 @@ import com.om.hackathon.collaborate.data.HustleDatabase
 import com.om.hackathon.collaborate.hustle.components.GradientButton
 import com.om.hackathon.collaborate.ui.theme.CollaborateTheme
 import com.om.hackathon.collaborate.ui.theme.SkyBlue
+import java.text.NumberFormat
+import java.util.Locale
 
 class EditActivity : ComponentActivity() {
 
@@ -66,6 +68,11 @@ class EditActivity : ComponentActivity() {
                         )
                         Spacer(modifier = Modifier.height(48.dp))
 
+                        Text(
+                            text = "Funds required",
+                            style = MaterialTheme.typography.bodyLarge
+                        )
+
                         var sliderValue by rememberSaveable { mutableStateOf(hustle.fundingRequirement.toFloat()) }
 
                         Slider(
@@ -80,7 +87,7 @@ class EditActivity : ComponentActivity() {
                             steps = 19
                         )
 
-                        Text(text = sliderValue.toInt().toString(),
+                        Text(text = "${NumberFormat.getCurrencyInstance(Locale("en", "ZA")).format(sliderValue.toInt())}",
                             color = SkyBlue,
                             style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Bold))
                         Spacer(modifier = Modifier.height(48.dp))
