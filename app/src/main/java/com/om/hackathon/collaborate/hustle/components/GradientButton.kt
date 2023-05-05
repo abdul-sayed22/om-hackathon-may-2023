@@ -14,12 +14,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.om.hackathon.collaborate.ui.theme.Primary
+import com.om.hackathon.collaborate.ui.theme.SkyBlue
 
 @Composable
 fun GradientButton(
     text: String,
-    textColor: Color,
-    gradient: Brush,
+    textColor: Color = Color.White,
+    gradient: Brush = Brush.horizontalGradient(listOf(SkyBlue, Primary)),
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {

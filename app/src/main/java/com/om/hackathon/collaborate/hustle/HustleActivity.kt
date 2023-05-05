@@ -86,8 +86,6 @@ class HustleActivity: ComponentActivity() {
                             ) {
                                 GradientButton(
                                     text = "Contribute",
-                                    textColor = Color.White,
-                                    gradient = Brush.horizontalGradient(listOf(SkyBlue, Primary)),
                                     onClick = {
 
                                     },
