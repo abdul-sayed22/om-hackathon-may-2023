@@ -14,8 +14,14 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.outlined.Edit
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.FilledIconButton
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -35,7 +41,7 @@ import com.om.hackathon.collaborate.ui.theme.CollaborateTheme
 import com.om.hackathon.collaborate.ui.theme.Primary
 import com.om.hackathon.collaborate.ui.theme.SkyBlue
 
-class HustleActivity: ComponentActivity() {
+class HustleActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,11 +61,30 @@ class HustleActivity: ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     Column(modifier = Modifier.padding(15.dp)) {
-                        Text(
-                            text = hustle.name,
-                            color = SkyBlue,
-                            style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold)
-                        )
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Text(
+                                text = hustle.name,
+                                color = SkyBlue,
+                                style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold)
+                            )
+                            if (isOwner) {
+                                IconButton(
+                                    onClick = {
+                                        val intent = Intent(
+                                            this@HustleActivity,
+                                            EditActivity::class.java
+                                        ).putExtra("HUSTLE_ID", hustleId)
+                                        startActivity(intent)
+                                    }
+                                ) {
+                                    Icon(
+                                        Icons.Outlined.Edit,
+                                        contentDescription = "Edit",
+                                        tint = SkyBlue
+                                    )
+                                }
+                            }
+                        }
                         Text(
                             text = "Owned by ${owner.name} ${owner.surname}",
                             color = Primary,
@@ -87,7 +112,10 @@ class HustleActivity: ComponentActivity() {
                                 GradientButton(
                                     text = "Contribute",
                                     onClick = {
-                                        val intent = Intent(this@HustleActivity, ContributeActivity::class.java)
+                                        val intent = Intent(
+                                            this@HustleActivity,
+                                            ContributeActivity::class.java
+                                        )
                                         startActivity(intent)
                                     },
                                     modifier = Modifier.fillMaxWidth(0.8f)
