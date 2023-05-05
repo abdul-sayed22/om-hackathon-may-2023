@@ -35,10 +35,10 @@ fun Graph(fundingRequirement: BigDecimal, fundingInPocket: BigDecimal, isOwner: 
         Modifier
             .fillMaxWidth()) {
         Row {
-            Text(text = if (isOwner) "You have " else "$owner has ", style = MaterialTheme.typography.titleLarge)
-            Text(text = "R$fundingInPocket", style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold))
-            Text(text = " out of ", style = MaterialTheme.typography.titleLarge)
-            Text(text = "R$fundingRequirement", style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold))
+            Text(text = if (isOwner) "You have " else "$owner has ", style = MaterialTheme.typography.titleMedium)
+            Text(text = "R$fundingInPocket", style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold))
+            Text(text = " out of ", style = MaterialTheme.typography.titleMedium)
+            Text(text = "R$fundingRequirement", style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold))
         }
         Spacer(modifier = Modifier.size(15.dp))
         GradientProgressBar(startColor = SkyBlue, endColor = Primary, progress = progress, modifier = Modifier.clip(shape = RoundedCornerShape(15.dp)).height(30.dp))

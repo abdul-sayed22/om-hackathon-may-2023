@@ -4,18 +4,31 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.FilledIconButton
+import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.om.hackathon.collaborate.dashboard.DashboardActivity
 import com.om.hackathon.collaborate.data.HustleDatabase
+import com.om.hackathon.collaborate.hustle.components.GradientButton
 import com.om.hackathon.collaborate.hustle.components.Graph
 import com.om.hackathon.collaborate.hustle.components.RequirementsList
 import com.om.hackathon.collaborate.ui.theme.CollaborateTheme
@@ -64,6 +77,25 @@ class HustleActivity: ComponentActivity() {
                             isOwner = isOwner,
                             owner = owner.name
                         )
+
+                        if (!isOwner) {
+                            Spacer(modifier = Modifier.height(30.dp))
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.Center
+                            ) {
+                                GradientButton(
+                                    text = "Contribute",
+                                    textColor = Color.White,
+                                    gradient = Brush.horizontalGradient(listOf(SkyBlue, Primary)),
+                                    onClick = {
+
+                                    },
+                                    modifier = Modifier.fillMaxWidth(0.8f)
+                                )
+                            }
+                        }
+
                         Spacer(modifier = Modifier.height(72.dp))
                         RequirementsList(requirements = hustle.requirements)
                     }

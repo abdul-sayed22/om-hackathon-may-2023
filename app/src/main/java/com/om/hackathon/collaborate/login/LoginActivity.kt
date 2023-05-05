@@ -1,7 +1,6 @@
 package com.om.hackathon.collaborate.login
 
 import android.content.Intent
-import android.hardware.lights.LightState
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -14,16 +13,6 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Face
@@ -32,27 +21,37 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.IconButtonColors
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
-import com.om.hackathon.collaborate.ui.theme.CollaborateTheme
-import androidx.compose.material3.OutlinedButton
-import androidx.compose.runtime.collectAsState
-import androidx.compose.ui.platform.LocalContext
-import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.om.hackathon.collaborate.MainActivity
 import com.om.hackathon.collaborate.R
 import com.om.hackathon.collaborate.dashboard.DashboardActivity
 import com.om.hackathon.collaborate.data.HustleDatabase
-import kotlinx.coroutines.flow.collectLatest
+import com.om.hackathon.collaborate.hustle.components.GradientButton
+import com.om.hackathon.collaborate.ui.theme.CollaborateTheme
+import com.om.hackathon.collaborate.ui.theme.Primary
+import com.om.hackathon.collaborate.ui.theme.SkyBlue
 
 
 class LoginActivity : ComponentActivity() {
@@ -187,7 +186,10 @@ fun loginForm(viewModel: LoginViewModel = viewModel()) {
                         }
                     })
                 Spacer(modifier = Modifier.size(60.dp))
-                FilledIconButton(
+                GradientButton(
+                    text = "Login",
+                    textColor = Color.White,
+                    gradient = Brush.horizontalGradient(listOf(SkyBlue, Primary)),
                     onClick = {
                         viewModel.attemptLogin(username = username, password = password)
                         if (viewModel.loginState.isLoggedIn) {
@@ -198,9 +200,7 @@ fun loginForm(viewModel: LoginViewModel = viewModel()) {
                         }
                     },
                     modifier = Modifier.fillMaxWidth(0.8f)
-                ) {
-                    Text("Login")
-                }
+                )
                 Spacer(modifier = Modifier.size(10.dp))
                 OutlinedButton(onClick = { /*TODO*/ }, modifier = Modifier.fillMaxWidth(0.8f)) {
                     Text("Sign up")
