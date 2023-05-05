@@ -43,8 +43,7 @@ import java.math.BigDecimal
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview
 @Composable
-fun MyHustleCard() {
-    val hustle = HustleDatabase.hustles.filter { it.ownerId == HustleDatabase.currentLoggedInUserId }.first()
+fun MyHustleCard(hustle: Hustle) {
     val context = LocalContext.current
     Card(
         onClick = {

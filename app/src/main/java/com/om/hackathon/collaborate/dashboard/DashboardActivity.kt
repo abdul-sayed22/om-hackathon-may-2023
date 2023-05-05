@@ -24,12 +24,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.om.hackathon.collaborate.dashboard.components.HustlesList
 import com.om.hackathon.collaborate.dashboard.components.MyHustleCard
 import com.om.hackathon.collaborate.data.HustleDatabase
+import com.om.hackathon.collaborate.hustle.EditActivity
 import com.om.hackathon.collaborate.hustle.HustleActivity
 import com.om.hackathon.collaborate.hustle.components.GradientButton
 import com.om.hackathon.collaborate.login.loginForm
@@ -50,6 +52,9 @@ class DashboardActivity : ComponentActivity() {
 
 @Composable
 fun DashboardScreen() {
+    val context = LocalContext.current
+    val myHustle = HustleDatabase.hustles.filter { it.ownerId == HustleDatabase.currentLoggedInUserId }.first()
+
     CollaborateTheme {
         // A surface container using the 'background' color from the theme
         Surface(
@@ -74,18 +79,18 @@ fun DashboardScreen() {
                     fontWeight = FontWeight.ExtraBold
                 )
                 Spacer(modifier = Modifier.size(15.dp))
-                MyHustleCard()
+                MyHustleCard(myHustle)
                 Spacer(modifier = Modifier.size(20.dp))
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.Center
                 ) {
                     GradientButton(
-                        text = "Start a new Hustle",
+                        text = "Edit your Hustle",
                         textColor = Color.White,
                         gradient = Brush.horizontalGradient(listOf(SkyBlue, Primary)),
                         onClick = {
-
+                            context.startActivity(Intent(context, EditActivity::class.java).putExtra("HUSTLE_ID", myHustle.id))
                         },
                         modifier = Modifier.width(200.dp)
                     )
